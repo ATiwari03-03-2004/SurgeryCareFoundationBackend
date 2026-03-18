@@ -1,0 +1,28 @@
+{
+    # For local dev, use HTTP
+    # For production, replace with your domain
+}
+
+:80 {
+    reverse_proxy app:8080
+
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+
+    log {
+        output stdout
+    }
+}
+
+# Production example (uncomment and set your domain):
+# api.yourdomain.com {
+#     reverse_proxy app:8080
+#     header {
+#         X-Content-Type-Options nosniff
+#         X-Frame-Options DENY
+#         Referrer-Policy strict-origin-when-cross-origin
+#     }
+# }
